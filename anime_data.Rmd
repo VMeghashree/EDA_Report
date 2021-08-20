@@ -1,0 +1,722 @@
+---
+title: "Annime_Recommendation_dataset"
+author: "Meghashree V"
+date: "19-08-2021"
+output: html_document
+---
+
+### To load the data set  
+```{r}
+data = read.csv('anime.csv')
+```
+
+### To Display rows of data set, By default shows 6 rows   
+```{r}
+head(data)
+```
+
+### To show the number of specified rows i.e for n=10, it will display the first 10 rows  
+```{r}
+head(data, n=10)
+```
+
+### To display the last Rows of your data  
+```{r}
+tail(data)
+```
+
+### To view the previously Loaded named object we use ls() command
+```{r}
+ls()
+```
+
+### The type of object can be ascertained using the class() command
+```{r}
+class(data)
+```
+
+```{r}
+class(data$MAL_ID)
+```
+```{r}
+data$MAL_ID[1:4]
+```
+
+```{r}
+class(dimnames(data))
+```
+
+### To show a different number of rows using the n = instruction with last record
+```{r}
+tail(data, n=3)
+```
+
+### To get information about an Data frame and particular columns:
+```{r}
+summary(data)
+```
+
+```{r}
+summary(data$Popularity)
+```
+
+```{r}
+mean(data$Popularity)
+```
+
+```{r}
+median(data$Popularity)
+```
+
+### To pick out item from third row and third columns:
+```{r}
+data[3,3]
+```
+
+### to display the values of third row corresponding to columns from one to four:  
+```{r}
+data[3,1:4]
+```
+
+### for displaying all the rows by leaving out the first value and selecting just the first column:
+```{r}
+data[,1]
+```
+
+### specifying rows and displaying values for all columns:
+```{r}
+data[c(1,3,5,7),]
+```
+
+### specifying several rows and using -4 to display all the columns except the fourth:
+```{r}
+data[c(1,3,5,7),-4]
+```
+
+### To use names of the colums to call the particular column:
+```{r}
+data[c(1,3,5,7),'Studios']
+```
+
+### to use [] to get the details of particular row :
+```{r}
+data[3,4]
+```
+
+### to append use $ and then the name of the required column we get the view of that column data:
+```{r}
+data$Aired
+```
+### Shows the median absolute deviation:  
+```{r}
+mad(data$Popularity)
+```
+```{r}
+mode(data$Popularity)
+```
+```{r}
+var(data$Popularity)
+```
+```{r}
+sd(data$Popularity)
+```
+```{r}
+quantile(data$Popularity)
+```
+
+### To find 20% quantile:
+```{r}
+quantile(data$Popularity,0.2)
+```
+
+### To find 20%,50% and 80% quantile:
+```{r}
+quantile(data$Popularity,c(0.2,0.5,0.8))
+```
+
+### To Returns five number summary (minimum, lower-hinge, median, upper-hinge, maximum) for the input data.
+```{r}
+fivenum(data$Popularity)
+```
+
+### Basic command that enables the viewing of columns or row is name():
+```{r}
+names(data)
+```
+
+### For displaying the row names:
+
+```{r}
+row.names(data)
+```
+
+### For displaying the column names:
+```{r}
+colnames(data)
+```
+
+### To display both row names and the column names at the same time we can use the command dimnames()
+```{r}
+dimnames(data)
+```
+
+### Omitting NA items:
+```{r}
+length(na.omit(data$Favorites))
+```
+### str() command is useful to see the object structure:
+
+```{r}
+str(data)
+```
+
+### structure returns the given object with further attributes set:
+```{r}
+head(structure(data))
+```
+
+### can also look at all the named objects you have at once using the ls.str() command:
+```{r}
+ls.str(data)
+```
+
+### can use the pattern = instruction to narrow down your focus
+
+```{r}
+ls.str(pattern = 'data')
+```
+
+### length() command used to determine the number of items in an object:
+
+```{r}
+length(data)
+```
+
+### To extract particular coloumn and row values:
+
+```{r}
+tdata = attach(data)
+tdata
+```
+
+### The max() and min() commands display the largest and smallest values in a numeric object
+```{r}
+max(data$Favorites)
+
+```
+
+```{r}
+max(data$Popularity)
+```
+
+```{r}
+min(data$Popularity)
+```
+
+```{r}
+min(data$Favorites)
+```
+
+```{r}
+head(stack(data))
+```
+
+### Sorting default is ascending order:
+```{r}
+head(sort(data$Popularity))
+```
+
+
+### can get an index using the order() command. This uses the same instructions as the sort() command, but tells you the position of each item along the vector:
+```{r}
+head(order(data$Popularity))
+```
+
+### The rank() command gives the rank number like order() in a slightly different manner when the values are same the ranks are shared between them which is not in order()  
+```{r}
+head(rank(data$Popularity), n=10)
+```
+
+### Displaying selected rows & columns  
+```{r}
+data[3,3]
+```
+
+```{r}
+data[3, 1:5]
+```
+
+### TO convert from Data frame from matrix:
+```{r}
+head(as.matrix(data))
+```
+
+### The cbind() and rbind() commands assemble a matrix/data frames, by columns or rows, from several other object
+```{r}
+head(rbind(data))
+```
+
+```{r}
+head(cbind(data))
+```
+
+### Simple Cumulative Commands:
+
+```{r}
+head(cumsum(data$Popularity))
+```
+
+```{r}
+head(cummax(data$Ranking))
+```
+```{r}
+head(cummin(data$Popularity))
+```
+
+### The cumulative product
+
+```{r}
+head(cumprod(data$Popularity))
+```
+
+### The table() command enables you to specify which columns of data you want to use to create your contingency table
+```{r}
+table(data$Ranked)
+```
+
+
+### To check whether the data extracted is data frame or not
+```{r}
+is.data.frame(data)
+
+```
+
+```{r}
+is.table(data)
+```
+### The class() command can form the basis of a logical test by using the if() command in the following manner:
+
+```{r}
+if(class(data) == 'data.frame') TRUE else FALSE
+```
+
+### The seq_along() command creates a simple index:
+```{r}
+seq_along(data)
+```
+
+### Create a basic stem and leaf plot using the stem() command
+```{r}
+stem(data$Popularity)
+```
+
+### Now increase the number of bins used by adding a scale = 2 instruction
+```{r}
+stem(data$Popularity, scale = 2)
+```
+
+### Histogram Plotting:  
+```{r}
+hist(data$Popularity)
+```
+
+```{r}
+hist(data$Members)
+```
+
+```{r}
+hist(data$Favorites)
+```
+```{r}
+hist(data$Watching)
+```
+```{r}
+hist(data$Dropped)
+```
+```{r}
+hist(data$Completed)
+```
+
+```{r}
+hist(data$Popularity, col = 'lightblue', xlab = 'Popularity', ylim = c(0, 0.1), freq = FALSE)
+```
+
+### You can also call on the density function directly via the density() command.
+```{r}
+density(data$Completed)
+```
+
+### Using the Density Function to Draw a Graph
+```{r}
+plot(density(data$Completed))
+```
+
+### Adding density lines to the Existing graphs:  
+```{r}
+hist(data$Completed, freq = F)
+lines(density(data$Completed), lty = 2)
+lines(density(data$Completed, k = 'rectangular'))
+```
+
+### Commands you can use in relation to the normal distribution:
+
+```{r}
+#to generate n random numbers from the normal distribution with mean of 0 and standard deviation of 1.
+head(rnorm(data$Popularity, mean = 0, sd = 1))
+```
+
+```{r}
+# for Returning the probability for the quantile q.
+head(pnorm(data$Popularity, mean = 0, sd = 1))
+```
+
+### By using rnorm() we can create ideal normal distribution using the mean and standard deviation of the data.  
+```{r}
+data.norm=rnorm(1000,mean(data$Popularity,sd(data$Popularity)))
+hist(data.norm, freq = FALSE)
+lines(density(data.norm))
+```
+
+### Quantile-Quantile Plot: 
+It produces a series of points that appers in a straight line for normal distribution. 
+```{r}
+qqnorm(data$Popularity)# for non-normal distribution
+```
+
+```{r}
+qqnorm(data.norm)# for normal distribution
+```
+
+```{r}
+data.norm2=rnorm(1000,mean(data$Popularity,sd(data$Popularity)))
+qqnorm(data.norm2)
+```
+
+```{r}
+qqnorm(data.norm, main = 'QQ plot of data$Popularity', xlab = 'Theoretical', 
+ylab = 'Quantiles for data$Popularity')
+qqline(data.norm, lwd = 2, lty = 2)
+```
+
+### It is possible to plot one distribution against another as a quantile-quantile plot using the qqplot() command.
+```{r}
+qqplot(data$Popularity, data$Ranked)
+```
+
+```{r}
+qqplot(data.norm, data.norm2)
+```
+
+### Drawing a straight line on the qqplot() can be done using the abline() command. This command uses the properties of a straight line (that is, y = a + bx) to produce a line on an existing plot. The general form of the command is: abline(a = intercept, b = slope).
+```{r}
+qqp = qqplot(data$Popularity, data$Members)
+abline(lm(qqp$y ~ qqp$x))
+```
+
+```{r}
+#for normalized data
+qqp = qqplot(data.norm, data.norm2)
+abline(lm(qqp$y ~ qqp$x))
+```
+
+### The basic method of applying a t-test is to compare two vectors of numeric data
+
+```{r}
+t.test(data$Popularity, data$Members)
+```
+
+### Two-sample t-Test with unequal variance:
+```{r}
+t.test(data$Popularity,data$Members)
+```
+
+### Two-sample t-Test with Equal variances:
+#### This can override the default and use the classic t-test by adding the var.equal = TRUE instruction, which forces the command to assume that the variance of the two samples is equal.
+```{r}
+t.test(data$Popularity, data$Members, var.equal = TRUE)
+```
+
+
+### One sample t-Testing:
+#### In this version you supply the name of a single vector and the mean to compare it to (this defaults to 0):
+```{r}
+t.test(data$Popularity, mu = 5)
+```
+### Using Directional Hypotheses:
+#### In this the direction of the hypotheses can be specified.
+```{r}
+t.test(data$Popularity, mu = 5, alternative = 'greater')
+```
+### Two-Sample U-Test:
+```{r}
+wilcox.test(data$Popularity, data$Members)
+```
+### One-Sample U-Test:
+```{r}
+wilcox.test(data$Popularity,exact=FALSE)
+```
+
+### Correlation and Covariance:
+#### The cor() command determines correlation and cov()command determines covariance.
+```{r}
+#correlation
+cor(data$Popularity, data$Members)
+```
+```{r}
+#Determines covariance between x and y . If x is a matrix or data frame, y can be omitted.
+x=cov(data$Popularity, data$Members)
+x
+```
+### The cov2cor() command is used to determine the correlation from a matrix of covariance in the following example:
+```{r}
+v = as.matrix(x)
+cov2cor(v)
+```
+### Significance Testing in Correlation Tests:
+```{r}
+cor.test(data$Popularity, data$Members)
+```
+### Chi-squared tests of association can be carried out using the chisq.test() command.
+```{r}
+chisq.test(data$Popularity)
+```
+### BoxPlot’s:
+```{r}
+boxplot(data$Popularity)
+```
+
+```{r}
+boxplot(data$Members)
+```
+
+```{r}
+boxplot(data$Favorites)
+```
+
+```{r}
+boxplot(data$Watching)
+```
+
+```{r}
+boxplot(data$Completed)
+```
+
+```{r}
+boxplot(data$Dropped)
+```
+
+```{r}
+boxplot(data$On.Hold)
+```
+### Boxplot for multiple items:
+```{r}
+boxplot(data$Popularity, data$Members)
+```
+
+### Customising Boxplots:
+```{r}
+boxplot(data$Popularity,data$Members,names=c('Popularity','Members'))
+title(xlab="Variable",y="Value")
+```
+
+### Horizontal Boxplots:
+```{r}
+boxplot(data$Popularity, horizontal = T)
+title(xlab = 'Popularity')
+```
+```{r}
+boxplot(data$Members, horizontal = T)
+title(xlab = 'Members')
+```
+
+```{r}
+boxplot(data$Completed, horizontal = T)
+title(xlab = 'Completed')
+```
+
+```{r}
+boxplot(data$Completed, horizontal = T)
+title(xlab = 'Favorites')
+```
+
+```{r}
+boxplot(data$Completed, horizontal = T)
+title(xlab = 'Watched')
+```
+
+```{r}
+boxplot(data$Completed, horizontal = T)
+title(xlab = 'On.Hold')
+```
+
+```{r}
+boxplot(data$Completed, horizontal = T)
+title(xlab = 'Dropped')
+```
+
+
+### scatter plot’s:
+
+```{r}
+plot(data$Popularity,data$Members)
+```
+
+```{r}
+plot(data$Completed,data$Dropped)
+```
+
+### Desired columns can be selected for ploating:
+```{r}
+ pairs(~ Popularity + Members + Completed, data =data)
+```
+### Line Charts:
+```{r}
+ with(data[order(data$Popularity),], plot(sort(Popularity), Completed, type = 'l'))
+```
+
+```{r}
+plot(data$Popularity, type = 'l' )
+```
+```{r}
+plot(data$Popularity, type = 'b')
+```
+
+### Pie chartS:
+```{r}
+pie(data$Popularity, labels = 'Popularity')
+```
+```{r}
+pie(data$Members, labels = 'Members')
+```
+```{r}
+pie(data$Members, labels = 'Completed')
+```
+```{r}
+pie(data$Members, labels = 'Watched')
+```
+```{r}
+pie(data$Members, labels = 'On.Hold')
+```
+```{r}
+pie(data$Members, labels = 'Dropped')
+```
+
+###Cleveland Dot Charts:
+```{r}
+dotchart(data$Popularity)
+```
+```{r}
+dotchart(data$Members)
+```
+```{r}
+dotchart(data$Completed)
+```
+```{r}
+dotchart(data$Watching)
+```
+
+```{r}
+data.mat=head(as.matrix(data$Completed))
+dotchart(head(data$Completed))
+```
+### Use the t() command to transpose the matrix and produce your dot plot:
+```{r}
+dotchart(t(data.mat))
+```
+### Bar charts:
+#### The bar chart is suitable for showing data that fall into discrete categories.
+```{r}
+barplot(data$Popularity)
+```
+```{r}
+barplot(data$Popularity)
+title(xlab = 'Channel', ylab = 'Popularity')
+box()
+```
+
+```{r}
+barplot(data$Popularity, names = row.names(data), ylab = 'Count' ,
+col = 'tan')
+```
+
+
+### Horizontal Bars:
+```{r}
+barplot(data.mat, beside = TRUE, horiz = TRUE)
+```
+### The analysis of variance using the aov() command
+```{r}
+temp.aov = na.omit(aov(data$Popularity ~ data$Members, data = data))
+temp.aov
+```
+
+### To see the classic ANOVA table of results, use the summary() command:
+```{r}
+summary(temp.aov)
+```
+### Two-Way ANOVA:
+#### In a basic one-way ANOVA you have one response variable and one predictor variable, but you may come across a situation in which you have more than one predictor variable, in such cases use two-way ANOVA.
+```{r}
+data.aov = aov(Popularity ~ Members + Completed, data = data)
+summary(data.aov)
+```
+### creating new testCol/testRow for addition as a new column/row to the df object (using rep() command):
+```{r}
+testCol = c(rep(data$Popularity - data$Members, length(data)))
+head(testCol)
+```
+
+### Adding Rows or Columns:
+```{r}
+test = data.frame(data, testCol)
+head(test)
+```
+
+```{r}
+test = data
+test["Test",] = NA
+tail(test)
+```
+### Column Indexes:
+```{r}
+col(data, as.factor = F)
+```
+### Extracting two columns from data:
+```{r}
+x = data[ , 9:10]
+head(x)
+```
+
+### Use the apply() command to apply a function over all the rows or columns of a data frame (or matrix):
+```{r}
+#similar to colMean()
+apply(data[ , 9:10], 2, mean)
+```
+```{r}
+apply(data[ , 5:10], 2, mean)
+```
+```{r}
+apply(data[ , 9:10], 2, median)
+```
+```{r}
+apply(data[ , 9:10], 2, var)
+```
+### Using tapply() to Summarize Using a Grouping Variable:
+```{r}
+tapply(data$Popularity, data$Type, FUN = mean)
+```
+```{r}
+tapply(data$Members, data$Type, FUN = mean)
+```
+```{r}
+tapply(data$Completed, data$Type, FUN = mean)
+```
+```{r}
+tapply(data$On.Hold, data$Type, FUN = mean)
+```
+```{r}
+tapply(data$Watching, data$Type, FUN = mean)
+```
+```{r}
+tapply(data$Dropped, data$Type, FUN = mean)
+```
